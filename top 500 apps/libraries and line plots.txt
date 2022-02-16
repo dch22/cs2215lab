@@ -1,0 +1,198 @@
+-------------------------
+libraries and line plot
+-------------------------
+
+golden rules:
+	effectiveness
+		encode the most important info with the most effective channel
+
+	expressiveness
+		match the properties of data and channel
+
+
+what is visualisation and data mining?
+	visualize: 
+		"to form a mental vision, image, or picture of (something not visible or present to the sight, or of an abstrction); to make visible to the mind or imagination."
+
+	visualisation:
+		is the use of computer graphics to create visual images which aid in the understanding of complex, often massive representation of data
+
+	visual data mining
+		is the process of discovering implicit but useful knowledge from large data sets using visualisation techniques
+
+
+table vs graphs
+	a table is best when:
+		you need to look up specific values
+
+		user need precise values
+
+		you need precisely compare related values
+
+		you have multiple data sets with different units of measure
+
+
+	a graph is best when:
+		the message is contained in the shape of the values
+
+		you want to reveal relationships among multiple values (similarities and differences)
+
+		show general trends
+
+		you have large data sets
+
+
+	graphs and tables serve different purposes
+
+	chose appropriate data display to fit your purpose
+
+
+data visualisation - common display types
+	common display types:
+		bar charts
+
+		line charts
+
+		pie charts
+
+		bubble charts
+
+		stacked charts
+
+		scatterplots
+
+		parallel lines
+
+
+parts of a chart
+	axis:
+		the reference lines in a coordinate system. the x-axis is the horizontal reference, and the y-axis is the vertical reference
+
+	title:
+		describes the data chart is symbolising
+
+	legend:
+		an explanatory list of symbolson a chart (needed when you graph multiple data sets)
+
+	labels:
+		are needed for linking the chart to the info being displayed. if charted data has labels in the spreadsheet, the labels should be carried over to the chart
+
+
+chart choice - fearsome foursome
+	barplot:
+		represents the value of entities using bar of various length
+
+	histogram:
+		an accurate graphical representation of the distribution of numeric data
+
+	scatter plot:
+		show the relationship between 2 numeric variables
+
+	line chart:
+		shows the evolution of numeric variables
+
+
+basic rules for creating a chart:
+	plot independent or control variable on the x-axis. the depenedent variable is plotted on the y-axis
+
+	label the axes and give units to thoselabels
+
+	all graphs should have a title. a good title always works is "y" as function of "x"
+
+
+the line plot - matplotlib (good for showing trend)
+	df = pd.DataFrame({"xvalues": range (0,101), "yvalues": range(0,101)})
+	print (df)
+
+#plot
+	plt.plot("xvalues", "yvalues", data=df)
+	plt.show()
+
+
+also:
+	plt.plot(df.xvalues, df.yvalues)
+
+also (pandas):
+	df.plot(x="xvalues", y="yvalues", kind="line")
+
+
+df = pd.dataframe({"xvalues":range(0,101), "yvalues": np.random.randn(101)})
+print(df)
+plt.plot("xvalues", "yvalues", data=df)
+plt.show()
+
+
+exmaple:
+	import matplotlib.pyplot as plt
+
+	years=list(range(1950,2011,10))
+	gdp=[300.2, 543.3, 1075.9, 2862.5, 5979.6, 10289.7, 14958.3]
+
+#create a line chart, years on x-axis, gdp on y-axis
+	plt.plot(years, gdp, color="green", marker="o", linestyle="solid")
+
+#add a title 
+	plt.title("nominal gdp")
+
+#add a label to the y-axis
+	plt.ylabel("billions of $")
+
+#add a label to the x-axis
+	plt.xlabel("year")
+	plt.show()
+
+#change the line style
+	plt.plot("x", "y", data=df, linestyle="dashed")
+	plt.plot("x", "y", data=df, linestyle=":")
+	plt.plot("x", "y", data=df, linestyle="-.")
+	plt.plot("x", "y", data=df, linestyle="--")
+	plt.plot("x", "y", data=df, linestyle="-") - just a solid line
+
+
+#change line width
+	linewidth = 8
+
+
+#change the markers
+	marker="o"
+
+
+import pandas as pd
+import numpy as np
+df = pd.dataframe({"x":range(1,11), "y1":np.random.radn(10), "y2":np.random.radn(10)+range(1,11), "y3":np.random.radn(10)+range(11,21)})
+
+import matplotlib.pyplot as plt
+plt.plot("x", "y1", data=df, marker="o", markerfacecolor="blue", markersize=12, color="skyblue", linewidth=4)
+
+plt.plot("x", "y2", data=df, marker="", color="olive", linewidth=2)
+
+plt.plot("x", "y3", data=df, marker="", color="olive", linewidth=2, linestyle="dashed", label="toto")
+
+plt.legend()
+plt.show()
+
+
+import matplotlib.pyplot as plt
+years=list(range(1950,2011,10))
+gdp1=[300.2, 543.3, 1075.9, 2862.5, 5979.6, 10289.7, 14958.3]
+gdp2=[226.0, 362.0, 928.0, 1992.0, 4931.0, 7488.0, 12147.0]
+gdp3=[1206.0, 1057.0, 1081.0, 2940.0, 8813.0, 13502.0, 19218.0]
+
+#create a line chart, years on x-axis, gdp on y-axis
+#use format string to specify color, marker, and line style
+plt.plot(years, gdp1, "bo-",
+	 years, gdp2, "r*:",
+	 years, gdp3, "gd-.")
+
+#add a title
+plt.title("nominal gdp")
+
+#add a label to the y-axis
+plt.ylabel("billions of $")
+
+#add a label to x-axis
+plt.xlabel("year")
+
+#add a legend
+plt.legend(["countrya", "countryb", "countryc"])
+plt.show()

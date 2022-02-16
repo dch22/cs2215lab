@@ -1,0 +1,146 @@
+-------------
+bar plot
+-------------
+
+a bar plot shows the relationship between a numeric and a categoric variable
+each entity of the categoric variable is represented as a bar
+the size of the bar represents its numeric value
+
+
+comparison of relative points
+used for comparing items that are not related to each other also commparisons between unrelated variables
+other names: bar chart, column graph, horizontal bar chart
+bar graphs are a family of charts that display quantitative info
+bar charts are frequently used to compare multiple varibles or to show how one or more variables vary over time
+
+
+bar charts - matplotlib
+	import matplotlib,pyplot as plt
+
+	num_chapters = [1039, 957, 709, 700, 545, 227]
+	mangas = ["one piece", "jojo", "bleach", "naruto", "fairy tail", "dr stone"]
+	xs = range(len(mangas)) # xs is range(6)
+
+#plot bars with left x-coordinates [xs]
+#heights [num_chapters]
+	plt.bar(xs, num_chapters)
+
+#label x-axis with movie names at bar centers
+	plt.bar(xs, mangas)
+
+#alternatively, use the following to replace the two lines above
+	plt.bar(xs, num_chapters, tick_label=mangas)
+
+	plt.ylabel("# of chapters")
+	plt.title("number of chapters of famous mangas")
+	plt.show()
+
+
+bar charts - pandas
+	import matplotlib.pyplot as plt
+	import pandas as pd
+
+	num_chapters = [1039, 957, 709, 700, 545, 227]
+	mangas = ["one piece", "jojo", "bleach", "naruto", "fairy tail", "dr stone"]
+
+	df = pd.dataframe({"num_chapters":num_chapters, "mangas":mangas})
+
+	df.plot.bar(x="mangas", y="num_chapters")
+
+# to improve change the colour of those that are finished
+	df.plot.bar(x="mangas", y="num_chapters", color=["green", "green", "red", "red", "red", "green"])
+
+
+y axis range
+	we can control the interval of the y axis using ylim
+	if used in the wrong way, it can create missleading info
+
+
+	import matplotlib.pyplot as plt
+	import pandas as pd
+
+	num_chapters = [1039, 957, 709, 700, 545, 227]
+	mangas = ["one piece", "jojo", "bleach", "naruto", "fairy tail", "dr stone"]
+
+	df = pd.dataframe({"num_chapters":num_chapters, "mangas":mangas})
+
+	df.plot.bar(x="mangas", y="num_chapters", color=["green", "green", "red", "red", "red", "green"], ylim=(0,1100))
+
+
+horizontal bar plot - matplotlib
+	import matplotlib.pyplot as plt
+
+	num_chapters = [1039, 957, 709, 700, 545, 227]
+	mangas = ["one piece", "jojo", "bleach", "naruto", "fairy tail", "dr stone"]
+	ys=range(len(mangas))
+
+	plt.barh(ys, num_chapters)
+
+	plt.yticks(ys, mangas)
+
+	plt.title("number of chapters of famous mangas")
+	plt.show()
+
+
+horizontal bar plot - pandas
+	import matplotlib.pyplot as plt
+	import pandas as pd
+
+	num_chapters = [1039, 957, 709, 700, 545, 227]
+	mangas = ["one piece", "jojo", "bleach", "naruto", "fairy tail", "dr stone"]
+
+	df = pd.dataframe({"num_chapters":num_chapters, "mangas":mangas})
+
+	df.plot.barh(x="mangas", y="num_chapters", color=["green", "green", "red", "red", "red", "green"])
+
+
+color bars
+	import matplotlib.pyplot as plt
+	import pandas as pd
+
+	num_chapters = [1039, 957, 709, 700, 545, 227]
+	mangas = ["one piece", "jojo", "bleach", "naruto", "fairy tail", "dr stone"]
+
+	df = pd.dataframe({"num_chapters":num_chapters, "mangas":mangas})
+
+	df.plot.bar(x="mangas", y="num_chapters", color=["olive", "gold", "black", "cyan", "firebrick", "darkslateblue"])
+
+	rgb is a way of making colours, you have to provide an amount of red, green, blue and transparency
+		plt.barh(y_pos, height, color=(0.2,0.2,1,0.5)) ~ comes out a pale blue
+
+
+edge color
+	import matplotlib.pyplot as plt
+	import pandas as pd
+
+	num_chapters = [1039, 957, 709, 700, 545, 227]
+	mangas = ["one piece", "jojo", "bleach", "naruto", "fairy tail", "dr stone"]
+
+	df = pd.dataframe({"num_chapters":num_chapters, "mangas":mangas})
+
+	df.plot.barh(x="mangas", y="num_chapters", color="green", edgecolor="red")
+
+
+rotate the labels
+	import matplotlib.pyplot as plt
+	import pandas as pd
+
+	num_chapters = [1039, 957, 709, 700, 545, 227]
+	mangas = ["one piece", "jojo", "bleach", "naruto", "fairy tail", "dr stone"]
+
+	df = pd.dataframe({"num_chapters":num_chapters, "mangas":mangas})
+
+	df.plot.bar(x="mangas", y="num_chapters", rot=0)
+
+
+limit for the axis - matplotlib
+	plt.bar(y_pos, height, color=(0.5, 0.1, 0.5, 0.6)) ~ pale pink/purple
+
+#limit for y axis
+	plt.ylim(0,60)
+
+#create names
+	plt.xticks(y_pos, bars)
+
+#choose the position of each barplots on the x-axis (space=1,4,3,1)
+	y_pos=[0, 1,5,8,9]
